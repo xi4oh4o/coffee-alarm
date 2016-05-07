@@ -4,4 +4,6 @@ html
     title= title
     include ./shared/head.pug
   body
-    block content
+    include ./shared/nav.pug
+    div.ui.container
+      block content

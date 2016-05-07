@@ -1,9 +1,9 @@
 express = require 'express'
 router = express.Router()
 
-# GET home page.
+# GET users listing.
 router.get '/', (req, res, next) ->
-  res.render 'index',
-    title: 'Coffee alarm'
+  res.render 'groups',
+    title: 'Groups'
 
 module.exports = router
