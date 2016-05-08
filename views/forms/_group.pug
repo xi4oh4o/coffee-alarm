@@ -1,3 +1,11 @@
 div.ui.modal.add-group-form
   i.close.icon
-  div.header Profile Picture
+  div.header 创建邮件组
+  div.content
+    form.ui.form(action="/groups" accept-charset="UTF-8" method="post")
+      div.field
+        label 邮件组名称
+        input(type="text" name="name" placeholder="prod")
+      button.ui.positive.labeled.icon.button
+        i.checkmark.icon
+        |提交

@@ -17,14 +17,10 @@ block content
       p 群组列表
     div.ui.secondary.segment
       div.ui.relaxed.divided.list
-        div.item
-          i.large.github.middle.aligned.icon
-          div.content
-            a.header Dev
-            div.description Users: zhang@gmail.com
-        div.item
-          i.large.github.middle.aligned.icon
-          div.content
-            a.header Prod
-            div.description Users: xi4oh4o@gmail.com
+        each val in groups
+          div.item
+            i.large.github.middle.aligned.icon
+            div.content
+              a.header=val
+              div.description Users: zhang@gmail.com
   include ./forms/_group.pug
