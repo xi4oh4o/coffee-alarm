@@ -29,7 +29,7 @@ app.use express.static path.join __dirname, 'public'
 app.use coffee(
   src: 'public/coffee'
   dest: 'public/javascripts'
-  prefix: '/javascripts' # will remove /js from .coffee file path
+  prefix: '/' # will remove /js from .coffee file path
   compilerOpts: bare: true
 )
 
