@@ -1,4 +1,30 @@
 extends layout
 
 block content
-  p This is #{title}
+
+  div.ui.menu
+    div.item
+      div.ui.primary.add-group.button
+        i.icon.plus
+        | Groups
+    div.item
+      div.ui.button
+        i.icon.help
+        | Help
+
+  div.ui.segments
+    div.ui.segment
+      p 群组列表
+    div.ui.secondary.segment
+      div.ui.relaxed.divided.list
+        div.item
+          i.large.github.middle.aligned.icon
+          div.content
+            a.header Dev
+            div.description Users: zhang@gmail.com
+        div.item
+          i.large.github.middle.aligned.icon
+          div.content
+            a.header Prod
+            div.description Users: xi4oh4o@gmail.com
+  include ./forms/_group.pug
