@@ -4,6 +4,7 @@ favicon = require 'serve-favicon'
 logger = require 'morgan'
 cookieParser = require 'cookie-parser'
 bodyParser = require 'body-parser'
+coffee = require 'express-coffee-script'
 
 routes = require './routes/index'
 users = require './routes/users'
@@ -22,7 +23,15 @@ app.use bodyParser.json()
 app.use bodyParser.urlencoded
   extended: false
 app.use cookieParser()
+
 app.use express.static path.join __dirname, 'public'
+
+app.use coffee(
+  src: 'public/coffee'
+  dest: 'public/javascripts'
+  prefix: '/javascripts' # will remove /js from .coffee file path
+  compilerOpts: bare: true
+)
 
 app.use '/', routes
 app.use '/users', users
