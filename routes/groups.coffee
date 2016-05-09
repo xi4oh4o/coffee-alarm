@@ -12,6 +12,7 @@ router.get '/', (req, res) ->
       throw err
     res.render 'groups',
       groups: result
+      title: "Groups - Coffee alarm"
 
 router.post '/', (req, res) ->
   group_json = {
