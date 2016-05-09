@@ -1,0 +1,22 @@
+div.ui.modal.add-user-form
+  i.close.icon
+  div.header 创建人员
+  div.content
+    form.ui.form(action="/users" accept-charset="UTF-8" method="post")
+      div.field
+        label 用户姓名
+        input(type="text" name="name" placeholder="张三" required="required")
+      div.field
+        label 邮箱地址
+        input(type="email" name="email" placeholder="joe@example.org" required="required")
+      div.field
+        label 移动电话
+        input(type="text" name="phone" maxlength="11" placeholder="13900000000" required="required")
+      div.field
+        label 所属群组
+        select.ui.dropdown.groups
+          each group in groups
+            option(value= group) #{group}
+      button.ui.positive.labeled.icon.button
+        i.checkmark.icon
+        |提交
