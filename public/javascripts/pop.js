@@ -4,6 +4,12 @@ $(".add-group.button").on({
   }
 });
 
+$(".help-group.button").on({
+  click: function() {
+    return $(".ui.modal.help-group").modal('show');
+  }
+});
+
 $(".message .close").on({
   click: function() {
     return $(this).closest('.message').transition('fade');
