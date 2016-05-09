@@ -3,3 +3,9 @@ $(".add-group.button").on({
     return $(".ui.modal.add-group-form").modal('show');
   }
 });
+
+$(".message .close").on({
+  click: function() {
+    return $(this).closest('.message').transition('fade');
+  }
+});
