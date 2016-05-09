@@ -20,13 +20,13 @@ router.post '/', (req, res) ->
 
   client.on 'error', (err) ->
     console.log('Error' + err)
-    
+
   name = req.body.name
   client.sadd 'groups', name, (err, replies) ->
     if replies == 1
-      # @todo Flash Success
+      req.flash('success', '群组创建成功')
       res.redirect('back')
     else
-      # @todo Flash Fail
+      req.flash('error', '群组已存在')
       res.redirect('back')
 module.exports = router
