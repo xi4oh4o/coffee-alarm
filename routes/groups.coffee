@@ -1,33 +1,25 @@
 express = require 'express'
-redis = require('redis')
+mongo = require 'mongoskin'
 router = express.Router()
+db = mongo.db('mongodb://localhost:27017/alarm-doc')
 
 # GET users listing.
 router.get '/', (req, res) ->
-  client = redis.createClient()
-
-  client.on 'error', (err) ->
-    console.log('Error' + err)
-
-  client.smembers 'groups', (err, replies) ->
-      res.render 'groups',
-        groups: replies
-        title: "Alarm"
-  client.quit()
+  db.collection('groups').find().toArray (err, result) ->
+    if err
+      throw err
+    res.render 'groups',
+      groups: result
 
 router.post '/', (req, res) ->
-  client = redis.createClient()
-
-  client.on 'error', (err) ->
-    console.log('Error' + err)
-
-  name = req.body.name
-  cn_name = req.body.cn_name
-  client.sadd 'groups', name, (err, replies) ->
-    if replies == 1
-      client.set 'alarm:group:alias:'+name, cn_name, (err, replies) ->
-        req.flash('success', '群组创建成功')
-        res.redirect('back')
+  group_json = {
+    "name": req.body.name,
+    "cn_name": req.body.cn_name
+  }
+  db.collection('groups').insertOne group_json, (err, r) ->
+    if r.insertedCount == 1
+      req.flash('success', '群组创建成功')
+      res.redirect('back')
     else
       req.flash('error', '群组已存在')
       res.redirect('back')

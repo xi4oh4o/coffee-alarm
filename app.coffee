@@ -7,6 +7,7 @@ session = require 'express-session'
 flash = require 'connect-flash'
 bodyParser = require 'body-parser'
 coffee = require 'express-coffee-script'
+mongo = require 'mongoskin'
 
 routes = require './routes/index'
 users = require './routes/users'
