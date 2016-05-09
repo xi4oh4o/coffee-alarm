@@ -1,0 +1,7 @@
+each type in Object.keys(messages)
+    div(class="ui message transition "+type)
+      i.close.icon
+      div.header 提示
+        ul.list
+          each message in messages[type]
+            li= message
