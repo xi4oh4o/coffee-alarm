@@ -4,8 +4,13 @@ div.ui.modal.add-group-form
   div.content
     form.ui.form(action="/groups" accept-charset="UTF-8" method="post")
       div.field
-        label 邮件组名称
-        input(type="text" name="name" placeholder="prod")
+        label 英文名称
+        input(type="text" name="name" placeholder="prod" required)
+        small 不允许空格
+      div.field
+        label 中文名称
+        input(type="text" name="cn_name" placeholder="产品部" required)
+        small
       button.ui.positive.labeled.icon.button
         i.checkmark.icon
         |提交

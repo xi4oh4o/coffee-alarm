@@ -17,11 +17,11 @@ block content
       p 群组列表
     div.ui.secondary.segment
       div.ui.relaxed.divided.list
-        each val in groups
+        each group in groups
           div.item
             i.large.github.middle.aligned.icon
             div.content
-              a.header=val
-              div.description Users: zhang@gmail.com
+              a.header= group_alias[group]
+              div.description 英文名 #{group}
   include ./forms/_group.pug
   include ./modals/group_help.pug
