@@ -14,9 +14,9 @@ div.ui.modal.add-user-form
         input(type="text" name="phone" maxlength="11" placeholder="13900000000" required="required")
       div.field
         label 所属群组
-        select.ui.dropdown.groups
+        select.ui.dropdown.groups(name="group")
           each group in groups
-            option(value= group) #{group}
+            option(value= group.name) #{group.cn_name}
       button.ui.positive.labeled.icon.button
         i.checkmark.icon
         |提交

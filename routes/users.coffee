@@ -1,18 +1,17 @@
 express = require 'express'
-redis = require('redis')
+mongo = require 'mongoskin'
 router = express.Router()
+
+# Mongodb Connect
+db = mongo.db('mongodb://localhost:27017/alarm-doc')
 
 # GET users listing.
 router.get '/', (req, res, next) ->
-  client = redis.createClient()
-
-  client.on 'error', (err) ->
-    console.log('Error' + err)
-
-  client.smembers 'groups', (err, replies) ->
+  db.collection('groups').find().toArray (err, result) ->
+    if err
+      throw err
     res.render 'users',
-      groups: replies
-      title: "人员 - Coffee Alarm"
-    client.quit()
+      groups: result
+      title: "People - Coffee Alarm"
 
 module.exports = router
