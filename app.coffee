@@ -3,6 +3,8 @@ path = require 'path'
 favicon = require 'serve-favicon'
 logger = require 'morgan'
 cookieParser = require 'cookie-parser'
+session = require 'express-session'
+flash = require 'connect-flash'
 bodyParser = require 'body-parser'
 coffee = require 'express-coffee-script'
 
@@ -11,6 +13,19 @@ users = require './routes/users'
 groups = require './routes/groups'
 
 app = express()
+
+app.use cookieParser('keyboard cat')
+app.use session({
+  cookie: maxAge: 60000
+  resave: true
+  saveUninitialized: true
+  secret: 'abXH!'
+})
+app.use flash()
+
+app.use (req, res, next) ->
+  res.locals.messages = require('express-messages')(req, res);
+  next();
 
 # view engine setup
 app.set 'views', path.join __dirname, 'views'
@@ -29,7 +44,7 @@ app.use express.static path.join __dirname, 'public'
 app.use coffee(
   src: 'public/coffee'
   dest: 'public/javascripts'
-  prefix: '/' # will remove /js from .coffee file path
+  prefix: '/javascripts' # will remove /js from .coffee file path
   compilerOpts: bare: true
 )
 
