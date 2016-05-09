@@ -12,13 +12,11 @@ router.get '/', (req, res) ->
   client.smembers 'groups', (err, replies) ->
     group_alias = {}
     for group in replies
-      client.get 'alarm:group:alias:'+group, (err, reply) ->
-        group_alias[group] = reply
-        res.render 'groups',
-          group_alias: group_alias
-          groups: replies
-          title: "Alarm"
-        client.quit()
+      res.render 'groups',
+        group_alias: group_alias
+        groups: replies
+        title: "Alarm"
+  client.quit()
 
 router.post '/', (req, res) ->
   client = redis.createClient()
