@@ -4,5 +4,13 @@ $(".add-group.button").on click: ->
 $(".help-group.button").on click: ->
   $(".ui.modal.help-group").modal('show')
 
+$(".add-user.button").on click: ->
+  $(".ui.modal.add-user-form").modal('show')
+
+$(".help-user.button").on click: ->
+  $(".ui.modal.help-user").modal('show')
+
 $(".message .close").on click: ->
   $(this).closest('.message').transition('fade')
+
+$("select.dropdown").dropdown()
