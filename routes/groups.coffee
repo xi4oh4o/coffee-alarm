@@ -10,10 +10,7 @@ router.get '/', (req, res) ->
     console.log('Error' + err)
 
   client.smembers 'groups', (err, replies) ->
-    group_alias = {}
-    for group in replies
       res.render 'groups',
-        group_alias: group_alias
         groups: replies
         title: "Alarm"
   client.quit()
