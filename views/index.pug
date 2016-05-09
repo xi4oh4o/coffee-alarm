@@ -1,5 +1,6 @@
 extends layout
 
 block content
+    != messages('my_message_template.pug', locals)
     h1= title
     p Welcome to #{title}
