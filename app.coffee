@@ -11,6 +11,7 @@ coffee = require 'express-coffee-script'
 routes = require './routes/index'
 users = require './routes/users'
 groups = require './routes/groups'
+apis = require './routes/apis'
 
 app = express()
 
@@ -51,6 +52,7 @@ app.use coffee(
 app.use '/', routes
 app.use '/users', users
 app.use '/groups', groups
+app.use '/api', apis
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->
