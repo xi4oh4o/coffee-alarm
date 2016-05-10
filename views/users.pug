@@ -11,4 +11,22 @@ block content
       div.ui.button.help-user
         i.icon.help
         | 帮助
+  div.ui.segments
+    div.ui.segment
+      p 人员列表
+    div.ui.segment
+      table.ui.single.line.celled.table
+        thead
+          tr
+            th 姓名
+            th 电邮
+            th 手机
+            th 群组
+        tbody
+          each user in users
+            tr
+              td= user.name
+              td= user.email
+              td= user.phone
+              td= group_alias[user.group]
   include ./forms/_user.pug
