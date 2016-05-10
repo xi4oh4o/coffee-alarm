@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  != messages('my_message_template.pug', locals)
+  div.ui.menu
+    div.item
+      div.ui.button.help-user
+        i.icon.help
+        | 帮助
+  div.ui.segments
+    div.ui.segment
+      p 待发送列表
+    div.ui.segment
+      table.ui.single.line.celled.table
+        thead
+          tr
+            th 模块
+            th 群组
+            th 级别
+            th 消息
+        tbody
+          each alarm in alarms
+            tr
+              td= alarm.module
+              td= alarm.receive_group
+              td= alarm.level
+              td= alarm.message
