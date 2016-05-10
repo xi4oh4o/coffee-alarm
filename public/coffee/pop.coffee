@@ -10,6 +10,9 @@ $(".add-user.button").on click: ->
 $(".help-user.button").on click: ->
   $(".ui.modal.help-user").modal('show')
 
+$(".help-alarm.button").on click: ->
+  $(".ui.modal.help-alarms").modal('show')
+
 $(".message .close").on click: ->
   $(this).closest('.message').transition('fade')
 

@@ -22,6 +22,12 @@ $(".help-user.button").on({
   }
 });
 
+$(".help-alarm.button").on({
+  click: function() {
+    return $(".ui.modal.help-alarms").modal('show');
+  }
+});
+
 $(".message .close").on({
   click: function() {
     return $(this).closest('.message').transition('fade');

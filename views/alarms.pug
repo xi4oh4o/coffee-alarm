@@ -4,7 +4,7 @@ block content
   != messages('my_message_template.pug', locals)
   div.ui.menu
     div.item
-      div.ui.button.help-user
+      div.ui.button.help-alarm
         i.icon.help
         | 帮助
   div.ui.segments
@@ -27,3 +27,4 @@ block content
               td= alarm.level
               td= alarm.message
               td= alarm.sms_notice ? '是' : '否'
+  include ./modals/alarms_help.pug

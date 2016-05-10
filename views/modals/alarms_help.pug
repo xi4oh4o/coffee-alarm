@@ -1,0 +1,20 @@
+div.ui.modal.help-alarms
+  i.close.icon
+  div.header 告警队列说明
+  div.content
+    h3 列表说明
+    p 告警以邮件组形式发送，在邮件组中人员将会收到告警通知邮件。
+    p 本页面展示待处理告警列表
+    div.ui.ordered.steps
+      div.active.step
+        div.content
+          div.title 待发送
+          div.description 邮件于队列待发送
+      div.step
+        div.content
+          div.title 发送中
+          div.description 邮件将发送至指定邮件组(包含SMS提醒)
+      div.completed.step
+        div.content
+          div.title 完成！
+          div.description 告警邮件(SMS通知)处理完毕
