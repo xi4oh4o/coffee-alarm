@@ -18,6 +18,7 @@ block content
             th 群组
             th 级别
             th 消息
+            th SMS提醒
         tbody
           each alarm in alarms
             tr
@@ -25,3 +26,4 @@ block content
               td= alarm.receive_group
               td= alarm.level
               td= alarm.message
+              td= alarm.sms_notice ? '是' : '否'
