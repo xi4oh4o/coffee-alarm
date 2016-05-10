@@ -1,9 +1,13 @@
 express = require 'express'
 mongo = require 'mongoskin'
+kue = require 'kue'
 router = express.Router()
 
 # Mongodb Connect
 db = mongo.db('mongodb://localhost:27017/alarm-doc')
+
+# Kue Quened
+queue = kue.createQueue()
 
 router.get '/receiver', (req, res) ->
   json_ret = {
@@ -16,11 +20,20 @@ router.get '/receiver', (req, res) ->
 router.post '/receiver', (req, res) ->
   db.collection('send_list').insertOne req.body, (err, r) ->
     if r.insertedCount == 1
-      res.status(201).json({
-        "code": 1000,
-        "msg": "CREATED",
-        "request": req.route.path
-        })
+      job = queue.create('email', req.body).save((err) ->
+        if !err
+          res.status(201).json({
+            "code": 1000,
+            "msg": "CREATED job:"+ job.id,
+            "request": req.route.path
+          })
+        else
+          res.status(500).json({
+            "code": 1001,
+            "msg": "CREATED job fail",
+            "request": req.route.path
+          })
+      )
     else
       res.status(500).json({
         "code": 999,
