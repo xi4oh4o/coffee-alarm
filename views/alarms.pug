@@ -19,12 +19,14 @@ block content
             th 级别
             th 消息
             th SMS提醒
+            th 已送达
         tbody
           each alarm in alarms
             tr
               td= alarm.module
               td= alarm.receive_group
               td= alarm.level
-              td= alarm.message
+              td!= alarm.message
               td= alarm.sms_notice ? '是' : '否'
+              td= alarm.sent ? '是' : '否'
   include ./modals/alarms_help.pug
