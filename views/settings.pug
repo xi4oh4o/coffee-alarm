@@ -7,3 +7,40 @@ block content
       div.ui.button.help-setting
         i.icon.help
         | 帮助
+  div.ui.segments
+    div.ui.segment
+      p SMTP 设置
+    div.ui.segment
+      form.ui.form(action="/settings/smtp" accept-charset="UTF-8" method="post")
+        div.field
+          label SMTP服务器地址
+          input("type"="text", name="smtp_server", placeholder="exchange.domain.com", required)
+        div.field
+          label 邮件服务器端口
+          input("type"="text", name="smtp_port", placeholder="587", required)
+        div.field
+          label 邮箱账户
+          input("type"="email", name="smtp_username", placeholder="example@domain.com", required)
+        div.field
+          label 邮箱密码
+          input("type"="password", name="smtp_password", required)
+        div.field
+          label 发送方名称
+          input("type"="text", name="sent_name", placeholder="Coffee alarm", required)
+        button.ui.positive.labeled.icon.button
+          i.save.icon
+          |保存
+  div.ui.segments
+    div.ui.segment
+      p SMS 设置
+    div.ui.segment
+      form.ui.form(action="/settings/sms" accept-charset="UTF-8" method="post")
+        div.field
+          label SMS 密钥
+          input("type"="text", name="sms_key", required)
+        div.field
+          label 发送方名称
+          input("type"="text", name="sms_snet_name", placeholder="Coffee alarm", required)
+        button.ui.positive.labeled.icon.button
+          i.save.icon
+          |保存
