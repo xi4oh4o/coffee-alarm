@@ -9,10 +9,12 @@ A alarm platform
 - Node.js
 - CoffeeScript
 - Express.js
-- dotenv
-- kue
+- Kue
 - Pug
+- PM2
+- dotenv
 - Mongodb
+- Mailgun.js
 - Nodemailer
 - Semantic UI
 
