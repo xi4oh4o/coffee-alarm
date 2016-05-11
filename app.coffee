@@ -1,3 +1,4 @@
+# Dependency
 express = require 'express'
 path = require 'path'
 favicon = require 'serve-favicon'
@@ -8,23 +9,30 @@ flash = require 'connect-flash'
 bodyParser = require 'body-parser'
 coffee = require 'express-coffee-script'
 
+# Load dotenv
+require('dotenv').config();
+
+# Router Middleware
 routes = require './routes/index'
 alarms = require './routes/alarms'
 users = require './routes/users'
 groups = require './routes/groups'
 apis = require './routes/apis'
 
+# Initialize express app
 app = express()
 
+# Set Cookie & Sessions
 app.use cookieParser('keyboard cat')
 app.use session({
   cookie: maxAge: 60000
   resave: true
   saveUninitialized: true
-  secret: 'abXH!'
+  secret: process.env.SESSION_SECRET
 })
-app.use flash()
 
+# Use Flash Messages
+app.use flash()
 app.use (req, res, next) ->
   res.locals.messages = require('express-messages')(req, res);
   next();
@@ -41,15 +49,18 @@ app.use bodyParser.urlencoded
   extended: false
 app.use cookieParser()
 
+# Set static file
 app.use express.static path.join __dirname, 'public'
 
+# CoffeeScript Support
 app.use coffee(
   src: 'public/coffee'
   dest: 'public/javascripts'
-  prefix: '/javascripts' # will remove /js from .coffee file path
+  prefix: '/javascripts'
   compilerOpts: bare: true
 )
 
+# Use Router Middleware
 app.use '/', routes
 app.use '/alarms', alarms
 app.use '/users', users
