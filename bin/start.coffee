@@ -1,7 +1,7 @@
 #!/usr/bin/env coffee
 
 # Module dependencies.
-app = require './app'
+app = require '../app'
 debug = require('debug') 'coffee-alarm:server'
 http = require 'http'
 
