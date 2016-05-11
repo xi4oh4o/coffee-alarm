@@ -52,7 +52,7 @@ router.get '/receiver', (req, res) ->
 }
 ###
 router.post '/receiver', (req, res) ->
-  db.collection('send_list').insertOne req.body, (err, r) ->
+  db.collection('lists').insertOne req.body, (err, r) ->
     if r.insertedCount == 1
       job = queue.create('email', req.body).save((err) ->
         if !err
