@@ -20,6 +20,5 @@ npm install
 
 ### # Run
 ````shell
-npm install -g nodemon
-NODE_ENV=production nodemon start.coffee
+NODE_ENV=production npm start
 ````
