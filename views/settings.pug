@@ -14,19 +14,19 @@ block content
       form.ui.form(action="/settings/smtp" accept-charset="UTF-8" method="post")
         div.field
           label SMTP服务器地址
-          input("type"="text", name="smtp_server", placeholder="exchange.domain.com", required)
+          input("type"="text", name="smtp_server", value=""+mail_settings.smtp_server ? mail_settings.smtp_server : "", placeholder="exchange.domain.com", required)
         div.field
           label 邮件服务器端口
-          input("type"="text", name="smtp_port", placeholder="587", required)
+          input("type"="text", name="smtp_port", value=""+mail_settings.smtp_port ? mail_settings.smtp_port : "", placeholder="587", required)
         div.field
           label 邮箱账户
-          input("type"="email", name="smtp_username", placeholder="example@domain.com", required)
+          input("type"="email", name="smtp_username", value=""+mail_settings.smtp_login ? mail_settings.smtp_login : "", placeholder="example@domain.com", required)
         div.field
           label 邮箱密码
-          input("type"="password", name="smtp_password", required)
+          input("type"="password", name="smtp_password", value=""+mail_settings.smtp_password ? mail_settings.smtp_password : "", required)
         div.field
           label 发送方名称
-          input("type"="text", name="sent_name", placeholder="Coffee alarm", required)
+          input("type"="text", name="sent_name", value=""+mail_settings.sent_name ? mail_settings.sent_name : "", placeholder="Coffee alarm", required)
         button.ui.positive.labeled.icon.button
           i.save.icon
           |保存
@@ -41,6 +41,6 @@ block content
         div.field
           label 发送方名称
           input("type"="text", name="sms_snet_name", placeholder="Coffee alarm", required)
-        button.ui.positive.labeled.icon.button
+        button.ui.positive.labeled.icon.button(disabled)
           i.save.icon
           |保存
