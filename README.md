@@ -1,20 +1,25 @@
 # Coffee alarm
 
-The alarm platform
+A alarm platform
 
 - Node.js
 - CoffeeScript
 - Express.js
 - dotenv
 - kue
-- Mongodb
 - Pug
+- Mongodb
+- Mailgun.js
 - Semantic UI
 
-### Install
-  npm install -g coffee-script
-  npm install
-  
-### Run
-  npm install -g nodemon
-  NODE_ENV=production nodemon start.coffee
+### # Install
+````shell
+npm install -g coffee-script
+npm install
+````
+
+### # Run
+````shell
+npm install -g nodemon
+NODE_ENV=production nodemon start.coffee
+````
