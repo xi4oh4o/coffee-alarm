@@ -37,7 +37,7 @@ git pull & pm2 restart process.yml
 
 ### # Start Mail Queued
 ````shell
-pm2 start queued/process_mail.coffee
+pm2 start queued/process_nodemailer.coffee
 ````
 
 ### # Todo
