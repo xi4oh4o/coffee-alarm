@@ -14,7 +14,8 @@ A alarm platform
 
 ### # Install
 ````shell
-npm install -g coffee-script
+npm install coffee-script -g
+npm install pm2 -g
 npm install
 ````
 
@@ -23,14 +24,12 @@ npm install
 NODE_ENV=production npm start
 ````
 
-### # Deploy
-````shell
-npm install pm2 -g
-pm2 start process.yml
+### # Deploy Coffee alarm Cluster
+````
+git pull & pm2 restart process.yml
 ````
 
-### # Start & Stop PM2 Cluster
+### # Start Mail Queued
 ````shell
-pm2 start all
-pm2 stop all
+pm2 start queued/process_mail.coffee
 ````
