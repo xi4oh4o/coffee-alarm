@@ -30,6 +30,7 @@ router.get '/receiver', (req, res) ->
     "module": "服务器告警",
     "message": "<b>服务器猛烈燃烧!!!</b>",
     "sms_notice": true
+    "datetime": "2016-01-18 06:56:10"
 }
 @apiParam  {String} receive_group 收件群组
 @apiParam  {String} level 告警级别

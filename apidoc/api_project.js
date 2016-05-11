@@ -1,1 +1,1 @@
-define({  "name": "coffee-alarm",  "version": "0.0.0",  "description": "",  "sampleUrl": false,  "apidoc": "0.2.0",  "generator": {    "name": "apidoc",    "time": "2016-05-11T10:31:29.807Z",    "url": "http://apidocjs.com",    "version": "0.16.1"  }});
+define({  "name": "coffee-alarm",  "version": "0.0.0",  "description": "",  "sampleUrl": false,  "apidoc": "0.2.0",  "generator": {    "name": "apidoc",    "time": "2016-05-11T14:13:28.034Z",    "url": "http://apidocjs.com",    "version": "0.16.1"  }});

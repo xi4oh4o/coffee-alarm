@@ -16,6 +16,7 @@ router.get '/', (req, res) ->
       message: String
       sms_notice: Boolean
       sent: Boolean
+      datetime: String
     )
 
     List = mongoose.model('List', ListSchema)

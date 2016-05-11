@@ -31,7 +31,7 @@ email = (data, done) ->
         mailOptions = {
           "from": config.sent_name+" <"+config.smtp_login+">",
           "to": user.email,
-          "subject": data.module + " 告警 等级 " + data.level
+          "subject": data.module + " 告警 等级 " + data.level + " 触发时间 " + data.datetime
           "html" : data.message
         }
         # Sent Mail & Update List status

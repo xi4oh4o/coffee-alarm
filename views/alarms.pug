@@ -18,6 +18,7 @@ block content
             th 群组
             th 级别
             th 消息
+            th 触发时间
             th SMS提醒
             th 已送达
         tbody
@@ -27,6 +28,7 @@ block content
               td= alarm.receive_group
               td= alarm.level
               td!= alarm.message
+              td= alarm.datetime
               td= alarm.sms_notice ? '是' : '否'
               td= alarm.sent ? '是' : '否'
   include ./modals/alarms_help.pug
