@@ -2,6 +2,10 @@
 
 A alarm platform
 
+![coffee alarm](https://cloud.githubusercontent.com/assets/141127/15173468/c90ff83c-178e-11e6-851a-803c33a34686.png)
+
+### # Dependency
+
 - Node.js
 - CoffeeScript
 - Express.js
@@ -9,7 +13,7 @@ A alarm platform
 - kue
 - Pug
 - Mongodb
-- Mailgun.js
+- Nodemailer
 - Semantic UI
 
 ### # Install
