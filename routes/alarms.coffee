@@ -1,17 +1,28 @@
 express = require 'express'
-mongo = require 'mongoskin'
+mongoose = require 'mongoose'
 router = express.Router()
 
-# Mongodb Connect
-db = mongo.db('mongodb://localhost:27017/alarm-doc')
 
 # GET home page.
 router.get '/', (req, res) ->
-  db.collection('send_list').find().toArray (err, alarms) ->
-    if err
-      throw err
-    res.render 'alarms',
-      alarms: alarms
+  mongoose.connect('mongodb://localhost/alarm-doc')
+  db = mongoose.connection
+  db.on 'error', console.error.bind(console, 'connection error:')
+  db.once 'open', ->
+    ListSchema = mongoose.Schema(
+      receive_group: String
+      level: String
+      module: String
+      message: String
+      sms_notice: Boolean
+      sent: Boolean
+    )
+
+    List = mongoose.model('List', ListSchema)
+    List.find (err, lists) ->
+      throw err if err
+      res.render 'alarms',
+      alarms: lists
       title: "Alarms - Coffee alarm"
 
 module.exports = router
