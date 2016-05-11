@@ -33,3 +33,13 @@ git pull & pm2 restart process.yml
 ````shell
 pm2 start queued/process_mail.coffee
 ````
+
+### # Todo
+- [x] Express.js + Semantic UI
+- [x] Mail Queued
+- [x] Receiver APIs
+- [x] Mongodb
+- [ ] Pagination
+- [ ] SMS integration
+- [ ] Search
+- [ ] Statistics
