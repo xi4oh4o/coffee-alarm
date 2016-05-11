@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  != messages('my_message_template.pug', locals)
+  div.ui.menu
+    div.item
+      div.ui.button.help-setting
+        i.icon.help
+        | 帮助

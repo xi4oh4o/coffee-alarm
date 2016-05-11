@@ -17,6 +17,7 @@ routes = require './routes/index'
 alarms = require './routes/alarms'
 users = require './routes/users'
 groups = require './routes/groups'
+settings = require './routes/settings'
 apis = require './routes/apis'
 
 # Initialize express app
@@ -65,6 +66,7 @@ app.use '/', routes
 app.use '/alarms', alarms
 app.use '/users', users
 app.use '/groups', groups
+app.use '/settings', settings
 app.use '/api', apis
 
 # catch 404 and forward to error handler
