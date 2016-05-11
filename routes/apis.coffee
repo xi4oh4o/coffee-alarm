@@ -17,6 +17,40 @@ router.get '/receiver', (req, res) ->
   }
   res.status(400).json(json_ret)
 
+###
+@api {post} /api/receiver 通知告警平台
+@apiVersion 0.0.1
+@apiName 通知告警平台
+@apiGroup apis
+
+@apiParamExample {json} 请求例:
+{
+    "receive_group": "dev",
+    "level": "warning",
+    "module": "服务器告警",
+    "message": "<b>服务器猛烈燃烧!!!</b>",
+    "sms_notice": true
+}
+@apiParam  {String} receive_group 收件群组
+@apiParam  {String} level 告警级别
+@apiParam  {String} module 告警模块
+@apiParam  {String} message 告警内容支持HTML
+@apiParam  {Boolean} sms_notice 是否发送SMS通知
+
+@apiParamExample {json} 请求成功返回值例:
+{
+  "code": 1000,
+  "msg": "CREATED job:7",
+  "request": "/receiver"
+}
+
+@apiParamExample {json} 请求失败返回值例:
+{
+  "code": 999,
+  "msg": "INTERNAL SERVER ERROR",
+  "request": req.route.path
+}
+###
 router.post '/receiver', (req, res) ->
   db.collection('send_list').insertOne req.body, (err, r) ->
     if r.insertedCount == 1
