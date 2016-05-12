@@ -2,7 +2,8 @@
 
 A alarm platform
 
-![coffee alarm](https://cloud.githubusercontent.com/assets/141127/15178401/ed8fd254-17a7-11e6-9963-30b10309b798.png)
+![coffee alarm](https://cloud.githubusercontent.com/assets/141127/15213188/30b954ee-1878-11e6-8fe9-206ebd2bf52d.png)
+
 
 ### # Dependency
 
