@@ -27,6 +27,7 @@
     "pug": "^2.0.0-alpha6",
     "pug-load": "^1.0.3",
     "pug-loader": "^1.0.2",
+    "query-string": "^4.1.0",
     "redis": "^2.6.0-2",
     "semantic-ui": "^2.1.8",
     "serve-favicon": "~2.2.0"

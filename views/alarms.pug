@@ -22,7 +22,7 @@ block content
             th SMS提醒
             th 已送达
         tbody
-          each alarm in alarms
+          each alarm in alarms.data
             tr
               td= alarm.module
               td= alarm.receive_group
@@ -31,4 +31,8 @@ block content
               td= alarm.datetime
               td= alarm.sms_notice ? '是' : '否'
               td= alarm.sent ? '是' : '否'
+      div.ui.pagination.menu
+        a(class="item prev-page "+isStart() href="/alarms?"+prevPage()) 上一页
+        a.item.disabled 第 #{alarms.page} 页
+        a(class="item next-page "+isEnd() href="/alarms?"+nextPage()) 下一页
   include ./modals/alarms_help.pug
