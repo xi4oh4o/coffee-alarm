@@ -1,8 +1,11 @@
 express = require 'express'
 mongoosePaginator = require 'mongoose-paginator-simple'
 queryString = require 'query-string'
+mongo = require 'mongoskin'
 router = express.Router()
 mongoose = require '../shared/mongoose'
+
+skin_db = mongo.db('mongodb://localhost:27017/alarm-doc')
 
 db = mongoose.connection
 db.on 'error', console.error.bind(console, 'connection error:')
@@ -23,12 +26,17 @@ db.once 'open', ->
   List = mongoose.model('List', ListSchema)
   router.get '/', (req, res) ->
     criteria = {}
-    if req.query.level? then criteria['level'] = req.query.level
-    if req.query.group? then criteria['receive_group'] = req.query.group
+    if req.query.level? and req.query.level != ""
+      criteria['level'] = req.query.level
+    if req.query.group? and req.query.group != ""
+      criteria['receive_group'] = req.query.group
+    if req.query.datetime? and req.query.datetime != ""
+      criteria['datetime'] = req.query.datetime
 
     options =
       page: parseInt(req.query.page)
       limit: if req.query.limit? then parseInt(req.query.limit) else 10
+
     List.paginate criteria, options, (err, lists) ->
       throw err if err
 
@@ -44,13 +52,17 @@ db.once 'open', ->
       nextPage = () ->
         req.query.page+=2
         return queryString.stringify(req.query)
-
-      res.render 'alarms',
-      alarms: lists
-      isStart: isStart
-      isEnd: isEnd
-      prevPage: prevPage
-      nextPage: nextPage
-      title: "Alarms - Coffee alarm"
+      skin_db.collection('groups').find().toArray (err, groups) ->
+        if err
+          throw err
+        group_alias = {}
+        res.render 'alarms',
+        alarms: lists
+        isStart: isStart
+        isEnd: isEnd
+        prevPage: prevPage
+        nextPage: nextPage
+        groups: groups
+        title: "Alarms - Coffee alarm"
 
 module.exports = router

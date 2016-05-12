@@ -11,6 +11,28 @@ block content
     div.ui.segment
       p 告警列表
     div.ui.segment
+      form.ui.form(action="/alarms" accept-charset="UTF-8" method="get")
+        div.fields.inline
+          div.field
+            label 筛选群组
+            select.ui.dropdown.groups(name="group")
+              each group in groups
+                option(value="") 全部
+                option(value= group.name) #{group.cn_name}
+          div.field
+            label 筛选级别
+            select.ui.dropdown.groups(name="level")
+              option(value="") 全部
+              option(value="trace") Trace
+              option(value="error") Error
+              option(value="warning") Warning
+              option(value="info") Info
+          div.field
+            label 筛选时间
+            input(type="text", name="datetime")
+          button.ui.positive.icon.button
+            i.search.icon
+            |筛选
       table.ui.single.line.celled.table
         thead
           tr
@@ -30,7 +52,9 @@ block content
               td!= alarm.message
               td= alarm.datetime
               td= alarm.sms_notice ? '是' : '否'
-              td= alarm.sent ? '是' : '否'
+              td
+                div.ui.horizontal.label(class=alarm.sent ? 'green' : 'red')
+                  i.icon(class=alarm.sent ? 'checkmark' : 'remove')= alarm.sent ? ' 是' : ' 否'
       div.ui.pagination.menu
         a(class="item prev-page "+isStart() href="/alarms?"+prevPage()) 上一页
         a.item.disabled 第 #{alarms.page} 页
