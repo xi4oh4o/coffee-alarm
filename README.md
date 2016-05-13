@@ -46,7 +46,7 @@ pm2 start queued/process_nodemailer.coffee
 - [x] Mail Queued
 - [x] Receiver APIs
 - [x] Mongodb
-- [ ] Pagination
-- [ ] SMS integration
-- [ ] Search
+- [x] Pagination
+- [x] Search
 - [ ] Statistics
+- [ ] SMS integration
