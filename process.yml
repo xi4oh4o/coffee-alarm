@@ -1,7 +1,7 @@
 apps:
   name: Coffee alarm
   script: bin/start.coffee
-  instances: 4
+  instances: 1
   exec_mode: cluster
   watch: true
   env:
