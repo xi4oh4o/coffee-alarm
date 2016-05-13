@@ -26,6 +26,11 @@ npm install pm2 -g
 npm install
 ````
 
+### # Create account
+````shell
+coffee init.coffee (your username) (your password)
+````
+
 ### # Run
 ````shell
 NODE_ENV=production npm start
@@ -48,5 +53,6 @@ pm2 start queued/process_nodemailer.coffee
 - [x] Mongodb
 - [x] Pagination
 - [x] Search
+- [x] Authentication
 - [ ] Statistics
 - [ ] SMS integration
