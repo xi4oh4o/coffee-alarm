@@ -2,9 +2,10 @@ express = require 'express'
 mongoosePaginator = require 'mongoose-paginator-simple'
 queryString = require 'query-string'
 mongo = require 'mongoskin'
+ensure_login = require 'connect-ensure-login'
 router = express.Router()
-mongoose = require '../shared/mongoose'
 
+mongoose = require '../shared/mongoose'
 skin_db = mongo.db('mongodb://localhost:27017/alarm-doc')
 
 db = mongoose.connection
@@ -24,7 +25,7 @@ db.once 'open', ->
     maxLimit: 25
 
   List = mongoose.model('List', ListSchema)
-  router.get '/', (req, res) ->
+  router.get '/', ensure_login.ensureLoggedIn(), (req, res) ->
     criteria = {}
     if req.query.level? and req.query.level != ""
       criteria['level'] = req.query.level

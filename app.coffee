@@ -8,6 +8,33 @@ session = require 'express-session'
 flash = require 'connect-flash'
 bodyParser = require 'body-parser'
 coffee = require 'express-coffee-script'
+passport = require('passport')
+Strategy = require('passport-local').Strategy
+mongo = require 'mongoskin'
+
+db = mongo.db('mongodb://localhost:27017/alarm-doc')
+
+passport.use new Strategy((username, password, cb) ->
+  db.collection('manager').find({"username": username}).toArray (err, user) ->
+    if err
+      return cb(err)
+    if !user[0]
+      return cb(null, false, message: '无效的用户名 ' + username)
+    if user[0].password != password
+      return cb(null, false, message: '无效的密码')
+    cb null, user[0]
+)
+
+passport.serializeUser (user, cb) ->
+  cb null, user._id
+  return
+passport.deserializeUser (id, cb) ->
+  db.collection('manager').find({"_id": id}).toArray (err, user) ->
+    if err
+      return cb(err)
+    cb null, user
+    return
+  return
 
 # Load dotenv
 require('dotenv').config();
@@ -24,13 +51,17 @@ apis = require './routes/apis'
 app = express()
 
 # Set Cookie & Sessions
-app.use cookieParser('keyboard cat')
+app.use logger 'combined'
+app.use cookieParser 'keyboard cat'
 app.use session({
   cookie: maxAge: 60000
-  resave: true
-  saveUninitialized: true
+  resave: false
+  saveUninitialized: false
   secret: process.env.SESSION_SECRET
 })
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 # Use Flash Messages
 app.use flash()
@@ -48,7 +79,6 @@ app.use logger 'dev'
 app.use bodyParser.json()
 app.use bodyParser.urlencoded
   extended: false
-app.use cookieParser()
 
 # Set static file
 app.use express.static path.join __dirname, 'public'
@@ -60,6 +90,15 @@ app.use coffee(
   prefix: '/javascripts'
   compilerOpts: bare: true
 )
+
+app.get '/login', (req, res) ->
+  res.render 'login',
+    title: 'Login'
+
+app.post '/login', passport.authenticate('local',
+  successReturnToOrRedirect: '/'
+  failureRedirect: '/login'
+  failureFlash: true)
 
 # Use Router Middleware
 app.use '/', routes

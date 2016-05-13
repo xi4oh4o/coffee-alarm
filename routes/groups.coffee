@@ -1,12 +1,13 @@
 express = require 'express'
 mongo = require 'mongoskin'
+ensure_login = require 'connect-ensure-login'
 router = express.Router()
 
 # Mongodb Connect
 db = mongo.db('mongodb://localhost:27017/alarm-doc')
 
 # GET users listing.
-router.get '/', (req, res) ->
+router.get '/', ensure_login.ensureLoggedIn(), (req, res) ->
   db.collection('groups').find().toArray (err, result) ->
     if err
       throw err
@@ -14,7 +15,7 @@ router.get '/', (req, res) ->
       groups: result
       title: "Groups - Coffee alarm"
 
-router.post '/', (req, res) ->
+router.post '/', ensure_login.ensureLoggedIn(), (req, res) ->
   group_json = {
     "name": req.body.name,
     "cn_name": req.body.cn_name

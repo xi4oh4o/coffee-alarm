@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  != messages('my_message_template.pug', locals)
+  div.ui.segments
+    div.ui.segment
+      p 登录
+    div.ui.segment
+      form.ui.form(action="/login" accept-charset="UTF-8" method="post")
+        div.field
+          label 用户名
+          input(type="text" name="username" placeholder="admin" required="required")
+        div.field
+          label 密码
+          input(type="password" name="password" placeholder="joe@example.org" required="required")
+        button.ui.positive.labeled.icon.button
+          i.checkmark.icon
+          |登录

@@ -1,13 +1,14 @@
 express = require 'express'
 mongo = require 'mongoskin'
 redis = require 'redis'
+ensure_login = require 'connect-ensure-login'
 router = express.Router()
 
 # Redis Connect
 client = redis.createClient()
 
 # GET users listing.
-router.get '/', (req, res) ->
+router.get '/', ensure_login.ensureLoggedIn(), (req, res) ->
   client.get "mail_settings", (err, reply) ->
     if reply
       reply = JSON.parse(reply)
@@ -18,7 +19,7 @@ router.get '/', (req, res) ->
       title: "Settings - Coffee alarm"
 
 # POST settings smtp save
-router.post '/smtp', (req, res) ->
+router.post '/smtp', ensure_login.ensureLoggedIn(), (req, res) ->
   smtp_settings = "{
     \"smtp_server\": \"#{req.body.smtp_server}\",
     \"smtp_login\": \"#{req.body.smtp_username}\",
