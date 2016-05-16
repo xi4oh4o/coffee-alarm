@@ -4,7 +4,8 @@ kue = require 'kue'
 router = express.Router()
 
 # Mongodb Connect
-db = mongo.db('mongodb://localhost:27017/alarm-doc')
+require('dotenv').config()
+db = mongo.db('mongodb://'+process.env.MONGO_HOST+':27017/alarm-doc')
 
 # Kue Quened
 queue = kue.createQueue()

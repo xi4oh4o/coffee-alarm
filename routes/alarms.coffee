@@ -6,7 +6,9 @@ ensure_login = require 'connect-ensure-login'
 router = express.Router()
 
 mongoose = require '../shared/mongoose'
-skin_db = mongo.db('mongodb://localhost:27017/alarm-doc')
+
+require('dotenv').config()
+skin_db = mongo.db('mongodb://'+process.env.MONGO_HOST+':27017/alarm-doc')
 
 db = mongoose.connection
 db.on 'error', console.error.bind(console, 'connection error:')

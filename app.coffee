@@ -12,7 +12,10 @@ passport = require('passport')
 Strategy = require('passport-local').Strategy
 mongo = require 'mongoskin'
 
-db = mongo.db('mongodb://localhost:27017/alarm-doc')
+# Load dotenv
+require('dotenv').config();
+
+db = mongo.db('mongodb://'+process.env.MONGO_HOST+':27017/alarm-doc')
 
 passport.use new Strategy((username, password, cb) ->
   db.collection('manager').find({"username": username}).toArray (err, user) ->
@@ -35,9 +38,6 @@ passport.deserializeUser (id, cb) ->
     cb null, user
     return
   return
-
-# Load dotenv
-require('dotenv').config();
 
 # Router Middleware
 routes = require './routes/index'

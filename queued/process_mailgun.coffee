@@ -2,14 +2,14 @@ kue = require 'kue'
 mongo = require 'mongoskin'
 mailgun = require 'mailgun-js'
 queue = kue.createQueue()
-require('dotenv').config();
+require('dotenv').config()
 
 # Mailgun
 api_key = process.env.MAILGUN_KEY
 domain = process.env.MAILGUN_DOMAIN
 
 # Mongodb Connect
-db = mongo.db('mongodb://localhost:27017/alarm-doc')
+db = mongo.db('mongodb://'+process.env.MONGO_HOST+':27017/alarm-doc')
 
 mailgun = mailgun({"apiKey": api_key, "domain": domain})
 

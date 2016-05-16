@@ -4,7 +4,8 @@ ensure_login = require 'connect-ensure-login'
 router = express.Router()
 
 # Mongodb Connect
-db = mongo.db('mongodb://localhost:27017/alarm-doc')
+require('dotenv').config();
+db = mongo.db('mongodb://'+process.env.MONGO_HOST+':27017/alarm-doc')
 
 # GET users listing.
 router.get '/', ensure_login.ensureLoggedIn(), (req, res, next) ->

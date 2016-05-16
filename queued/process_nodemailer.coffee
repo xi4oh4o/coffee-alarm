@@ -6,7 +6,8 @@ queue = kue.createQueue()
 client = redis.createClient()
 
 # Mongodb Connect
-db = mongo.db('mongodb://localhost:27017/alarm-doc')
+require('dotenv').config();
+db = mongo.db('mongodb://'+process.env.MONGO_HOST+':27017/alarm-doc')
 
 email = (data, done) ->
 
