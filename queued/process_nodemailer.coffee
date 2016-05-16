@@ -2,11 +2,12 @@ kue = require 'kue'
 mongo = require 'mongoskin'
 nodemailer = require 'nodemailer'
 redis = require 'redis'
+
+require('dotenv').config();
 queue = kue.createQueue()
-client = redis.createClient()
+client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST)
 
 # Mongodb Connect
-require('dotenv').config();
 db = mongo.db('mongodb://'+process.env.MONGO_HOST+':27017/alarm-doc')
 
 email = (data, done) ->

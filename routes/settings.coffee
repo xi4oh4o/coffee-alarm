@@ -4,8 +4,9 @@ redis = require 'redis'
 ensure_login = require 'connect-ensure-login'
 router = express.Router()
 
+require('dotenv').config()
 # Redis Connect
-client = redis.createClient()
+client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST)
 
 # GET users listing.
 router.get '/', ensure_login.ensureLoggedIn(), (req, res) ->
