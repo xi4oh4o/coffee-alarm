@@ -7,8 +7,8 @@ password = process.argv[3]
 user_json =
   username: process.argv[2]
   password: process.argv[3]
-
-db = mongo.db('mongodb://localhost:27017/alarm-doc')
+require('dotenv').config()
+db = mongo.db('mongodb://'+process.env.MONGO_HOST+':27017/alarm-doc')
 
 db.collection('manager').insertOne user_json, (err, r) ->
   if r.insertedCount == 1
