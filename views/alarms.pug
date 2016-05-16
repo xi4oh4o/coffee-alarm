@@ -53,7 +53,7 @@ block content
                 div.ui.styled.fluid.accordion
                   div.title
                     i.dropdown.icon
-                    | #{alarm.message.substring(3, 10)}
+                    !=alarm.message.substring(0, 10)
                   div.content
                     div.transition!=alarm.message
               td= alarm.datetime
