@@ -35,3 +35,5 @@ $(".message .close").on({
 });
 
 $("select.dropdown").dropdown();
+
+$('.ui.accordion').accordion();

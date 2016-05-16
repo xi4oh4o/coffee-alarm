@@ -17,3 +17,4 @@ $(".message .close").on click: ->
   $(this).closest('.message').transition('fade')
 
 $("select.dropdown").dropdown()
+$('.ui.accordion').accordion()

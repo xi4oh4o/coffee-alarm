@@ -49,7 +49,13 @@ block content
               td= alarm.module
               td= alarm.receive_group
               td= alarm.level
-              td!= alarm.message
+              td
+                div.ui.styled.fluid.accordion
+                  div.title
+                    i.dropdown.icon
+                    | #{alarm.message.substring(3, 10)}
+                  div.content
+                    div.transition!=alarm.message
               td= alarm.datetime
               td= alarm.sms_notice ? '是' : '否'
               td
