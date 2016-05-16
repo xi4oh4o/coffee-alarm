@@ -37,6 +37,7 @@ db.once 'open', ->
       criteria['datetime'] = req.query.datetime
 
     options =
+      sort: _id: '-1'
       page: parseInt(req.query.page)
       limit: if req.query.limit? then parseInt(req.query.limit) else 30
 
