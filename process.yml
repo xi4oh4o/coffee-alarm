@@ -1,11 +1,20 @@
 apps:
-  name: Coffee alarm
-  script: bin/start.coffee
-  instances: 4
-  exec_mode: fork
-  watch: true
-  env:
-    NODE_ENV: development
-  env_production:
-    NODE_ENV: production
+  - name: Coffee alarm
+    script: bin/start.coffee
+    instances: 1
+    exec_mode: fork
+    watch: true
+    env:
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
 
+  - name: Nodemailer
+    script: queued/process_nodemailer.coffee
+    instances: 4
+    exec_mode: cluster
+    watch: false
+    env:
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
