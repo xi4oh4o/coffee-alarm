@@ -40,7 +40,7 @@ email = (data, done) ->
         transporter.sendMail mailOptions, (error, info) ->
           if error
             return console.log(error)
-          db.collection('send_list').updateById data._id, {$set: {"sent":true}}, (err, result) ->
+          db.collection('lists').updateById data._id, {$set: {"sent":true}}, (err, result) ->
             console.log 'Message sent: ' + info.response
     done()
     return
