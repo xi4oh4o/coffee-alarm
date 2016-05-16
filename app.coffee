@@ -54,9 +54,9 @@ app = express()
 app.use logger 'combined'
 app.use cookieParser 'keyboard cat'
 app.use session({
-  cookie: maxAge: 60000
-  resave: false
-  saveUninitialized: false
+  cookie: maxAge: 604800
+  resave: true
+  saveUninitialized: true
   secret: process.env.SESSION_SECRET
 })
 
