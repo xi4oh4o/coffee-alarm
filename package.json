@@ -22,6 +22,7 @@
     "mailgun-js": "^0.7.10",
     "mongodb": "^2.1.18",
     "mongoose": "^4.4.16",
+    "mongoose-paginator-simple": "^2.0.0",
     "mongoskin": "^2.1.0",
     "morgan": "~1.5.1",
     "nodemailer": "^2.3.2",
