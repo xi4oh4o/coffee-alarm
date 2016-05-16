@@ -40,4 +40,13 @@ router.post '/', ensure_login.ensureLoggedIn(), (req, res) ->
     else
       req.flash('error', '人员已存在')
       res.redirect('back')
+
+router.get '/delete/:id', ensure_login.ensureLoggedIn(), (req, res) ->
+  db.collection('users').removeById req.params.id, (err, r) ->
+    if r == 1
+      req.flash('success', '人员删除成功')
+      res.redirect('back')
+    else
+      req.flash('error', '人员删除失败')
+      res.redirect('back')
 module.exports = router

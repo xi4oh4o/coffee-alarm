@@ -22,6 +22,7 @@ block content
             th 电邮
             th 手机
             th 群组
+            th 操作
         tbody
           each user in users
             tr
@@ -29,5 +30,8 @@ block content
               td= user.email
               td= user.phone
               td= group_alias[user.group]
+              td
+                a(href="/users/delete/"+user._id onclick="return confirm('Are you sure?')")
+                  button.ui.mini.button.red 删除
   include ./forms/_user.pug
   include ./modals/people_help.pug
