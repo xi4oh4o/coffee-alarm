@@ -38,7 +38,7 @@ db.once 'open', ->
 
     options =
       page: parseInt(req.query.page)
-      limit: if req.query.limit? then parseInt(req.query.limit) else 10
+      limit: if req.query.limit? then parseInt(req.query.limit) else 30
 
     List.paginate criteria, options, (err, lists) ->
       throw err if err
