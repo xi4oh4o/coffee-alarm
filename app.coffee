@@ -76,9 +76,13 @@ app.set 'view engine', 'pug'
 # uncomment after placing your favicon in /public
 # app.use favicon "#{__dirname}/public/favicon.ico"
 app.use logger 'dev'
-app.use bodyParser.json()
+app.use bodyParser.json
+  limit: '1000kb'
 app.use bodyParser.urlencoded
+  limit: '1000kb'
   extended: false
+app.use bodyParser.raw
+  limit: '1000kb'
 
 # Set static file
 app.use express.static path.join __dirname, 'public'
