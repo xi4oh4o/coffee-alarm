@@ -16,8 +16,6 @@ email = (data, done) ->
   client.get "mail_settings", (err, reply) ->
     if reply
       config = JSON.parse(reply)
-      console.log config
-      console.log config.smtp_server
     else
       console.log 'SMTP configure not found'
       return
