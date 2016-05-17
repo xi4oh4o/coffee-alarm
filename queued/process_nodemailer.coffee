@@ -16,11 +16,13 @@ email = (data, done) ->
   client.get "mail_settings", (err, reply) ->
     if reply
       config = JSON.parse(reply)
+      console.log config
+      console.log config.smtp_server
     else
       console.log 'SMTP configure not found'
       return
     # Build nodemailer transporter
-    transporter = nodemailer.createTransport('smtps://'+encodeURIComponent(config.smtp_login)+':'+config.smtp_password+'@'+config.smtp_server)
+    transporter = nodemailer.createTransport('smtp://'+encodeURIComponent(config.smtp_login)+':'+config.smtp_password+'@'+config.smtp_server)
 
     # According to the receive group send to mail
     db.collection('users').find({"group":data.receive_group}).toArray (err, users) ->
