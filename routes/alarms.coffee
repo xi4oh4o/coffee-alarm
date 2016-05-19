@@ -25,10 +25,16 @@ db.once 'open', ->
 
   ListSchema.plugin mongoosePaginator,
     maxLimit: 25
+    convertCriteria: (criteria, schema) ->
+      if criteria && criteria.message
+        criteria.message = new RegExp(criteria.message, 'i')
+      return criteria
 
   List = mongoose.model('List', ListSchema)
   router.get '/', ensure_login.ensureLoggedIn(), (req, res) ->
     criteria = {}
+    if req.query.message? and req.query.message != ""
+      criteria['message'] = req.query.message
     if req.query.level? and req.query.level != ""
       criteria['level'] = req.query.level
     if req.query.group? and req.query.group != ""
