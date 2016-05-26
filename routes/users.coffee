@@ -92,7 +92,7 @@ router.post '/', ensure_login.ensureLoggedIn(), (req, res) ->
       res.redirect('back')
 
 router.get '/delete/:id', ensure_login.ensureLoggedIn(), (req, res) ->
-  db.collection('users').removeById req.params.id, (err, r) ->
+  skin_db.collection('users').removeById req.params.id, (err, r) ->
     if r == 1
       req.flash('success', '人员删除成功')
       res.redirect('back')
