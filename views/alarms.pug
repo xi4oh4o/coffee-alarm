@@ -50,8 +50,10 @@ block content
           each alarm in alarms.data
             tr
               td= alarm.module
-              td= alarm.receive_group
-              td= alarm.level
+              td
+                a(href="/users?group="+alarm.receive_group)= alarm.receive_group
+              td
+                a(href="/alarms?level="+alarm.level)= alarm.level
               td
                 div.ui.styled.fluid.accordion
                   div.title
