@@ -15,6 +15,26 @@ block content
     div.ui.segment
       p 人员列表
     div.ui.segment
+      form.ui.form(action="/users" accept-charset="UTF-8" method="get")
+          div.fields.inline
+            div.field
+              label 筛选群组
+              select.ui.dropdown.groups(name="group")
+                each group in groups
+                  option(value="") 全部
+                  option(value= group.name) #{group.cn_name}
+            div.field
+              label 姓名搜索
+              input(type="text", name="name", placeholder="伦太郎")
+            div.field
+              label 电邮搜索
+              input(type="email", name="email", placeholder="admin@example.org")
+            div.field
+              label 手机搜索
+              input(type="text", name="phone", placeholder="18500000000")
+            button.ui.positive.icon.button
+              i.search.icon
+              |筛选
       table.ui.single.line.celled.table
         thead
           tr
@@ -24,7 +44,7 @@ block content
             th 群组
             th 操作
         tbody
-          each user in users
+          each user in users.data
             tr
               td= user.name
               td= user.email
@@ -33,5 +53,9 @@ block content
               td
                 a(href="/users/delete/"+user._id onclick="return confirm('Are you sure?')")
                   button.ui.mini.button.red 删除
+      div.ui.pagination.menu
+        a(class="item prev-page "+isStart() href="/users?"+prevPage()) 上一页
+        a.item.disabled 第 #{users.page} 页
+        a(class="item next-page "+isEnd() href="/users?"+nextPage()) 下一页
   include ./forms/_user.pug
   include ./modals/people_help.pug
